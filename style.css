@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto Condensed", Helvetica, sans-serif;
+    font-weight:400;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header div {
+    text-align: left;
+}
+
+header h1 {
+    font-size: clamp(50px,7vw,125px);
+    color: #303133;
+    margin: 0;
+    line-height: 1.2;
+}
+
+header h2 {
+    color: #303133;
+    font-size: 20px;
+}
+
+.logo {
+    width: 100px; 
+    height: auto;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #303133;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+}
+
+.image-container img {
+    width: 300px;
+    height: auto;
+
+}
+
+.bio {
+    flex: 2;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.bio h2 {
+    margin-bottom: 20px;
+    font-size: 75px;
+}
+
+.bio p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.portfolio {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+
+    margin: 0 auto;
+    width: 100%;
+    
+}
+.portfolio-section {
+    color: #303133;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-title {
+    font-size: 3rem;
+    text-align: left;
+    flex: 1;
+}
+
+.portfolio-description {
+    font-size: 1.2rem;
+    text-align: left;
+    flex: 2;
+    padding-left: 50px;
+    color: #666;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    animation: rotateLogo 6s infinite linear;
+}
+
+@keyframes rotateLogo {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+@media (max-width: 745px) {
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+    .service {
+        width: 100%;
+        margin-bottom: 1.5em;
+    }
+}
+
+.fullscreen-image {
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    z-index: -1;
+}
+
+footer {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
