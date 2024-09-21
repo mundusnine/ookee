@@ -63,13 +63,13 @@ header h2 {
 
 .bio {
     flex: 2;
-    padding-left: 50px;
+    /* padding-left: 50px; */
     text-align: left;
 }
 
 .bio h2 {
     margin-bottom: 20px;
-    font-size: 75px;
+    font-size: 2.5rem;
 }
 
 .bio p {
@@ -77,15 +77,8 @@ header h2 {
     line-height: 1.6;
 }
 
-.portfolio {
-    background-color: #f4f4f4;
-    padding: 50px 20px;
-
-    margin: 0 auto;
-    width: 100%;
-    
-}
 .portfolio-section {
+    background-color: #f4f4f4;
     color: #303133;
     display: flex;
     justify-content: space-between;
