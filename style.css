@@ -6,7 +6,7 @@
 
 body {
     font-family: "Roboto Condensed", Helvetica, sans-serif;
-    font-weight:400;
+    font-weight: 400;
     line-height: 1.6;
 }
 
@@ -17,14 +17,16 @@ header {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 header div {
     text-align: left;
+    flex-basis: 50%;
 }
 
 header h1 {
-    font-size: clamp(50px,7vw,125px);
+    font-size: clamp(50px, 7vw, 125px);
     color: #303133;
     margin: 0;
     line-height: 1.2;
@@ -32,11 +34,11 @@ header h1 {
 
 header h2 {
     color: #303133;
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
 }
 
 .logo {
-    width: 100px; 
+    width: clamp(80px, 10vw, 100px);
     height: auto;
 }
 
@@ -48,32 +50,32 @@ header h2 {
     max-width: 1200px;
     margin: 0 auto;
     color: #303133;
+    flex-wrap: wrap;
 }
 
 .image-container {
     flex: 1;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .image-container img {
-    width: 300px;
+    width: clamp(200px, 50vw, 300px);
     height: auto;
-
 }
 
 .bio {
     flex: 2;
-    /* padding-left: 50px; */
     text-align: left;
 }
 
 .bio h2 {
     margin-bottom: 20px;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
 }
 
 .bio p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     line-height: 1.6;
 }
 
@@ -84,33 +86,29 @@ header h2 {
     justify-content: space-between;
     align-items: center;
     padding: 50px 20px;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .portfolio-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     text-align: left;
     flex: 1;
+    margin-bottom: 20px;
 }
 
 .portfolio-description {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     text-align: left;
     flex: 2;
     padding-left: 50px;
     color: #666;
 }
 
-.products {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
 .logo {
-    width: 100px;
-    height: 100px;
+    width: clamp(80px, 10vw, 100px);
+    height: clamp(80px, 10vw, 100px);
     animation: rotateLogo 6s infinite linear;
 }
 
@@ -124,9 +122,10 @@ header h2 {
 }
 
 .image-grid {
+    background-color: #f4f4f4;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 10px; /* spacing between images */
     padding: 10px;
 }
 
@@ -134,23 +133,13 @@ header h2 {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 5px;
-}
-@media (max-width: 745px) {
-    .services {
-        flex-direction: column;
-        align-items: center;
-    }
-    .service {
-        width: 100%;
-        margin-bottom: 1.5em;
-    }
+    border-radius: 5px; /* Optional: adds rounded corners */
 }
 
 .fullscreen-image {
     top: 0;
     left: 0;
-    width: 100vw; 
+    width: 100vw;
     z-index: -1;
 }
 
