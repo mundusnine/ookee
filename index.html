@@ -10,8 +10,6 @@
     <title>Oakee -</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // const profile_name = "kri_ookee";
-        // const url = `https://www.instagram.com/${profile_name}/?__a=1`;
         fetch("content.html")
         .then(response => {
             if (!response.ok) {
@@ -29,16 +27,24 @@
                 img.src = image.src;
                 img.alt = image.alt;
                 imageGrid.appendChild(img);
-
-                // console.log());
-                // console.log(image.getAttribute('sizes'));
-                //src
-                //sizes
             });
         })
         .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-        });        
+            console.error('Couldn\'t fetch instagram images of portfolio:', error);
+        });
+        window.addEventListener('scroll', function() {
+            const img_format = ".png";
+            const hero_img = document.querySelector('.fullscreen-image');
+            const scrollPosition = window.pageYOffset;
+            const rect = hero_img.getBoundingClientRect();
+            const transDistance = hero_img.height * 0.2;
+            const absoluteY = rect.top + window.scrollY - transDistance;
+            for(let i = 0; i < 3;++i){
+                if(scrollPosition > (absoluteY + i* transDistance)){
+                    hero_img.src = hero_img.src.slice(0,-5) + i + img_format;
+                }
+            }
+        });
     </script>
 </head>
 <body>
