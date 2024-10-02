@@ -4,6 +4,7 @@ const fs = require('fs');
 
 async function scrapeInstagram() {
     const folderName = "assets/images";
+    const tempFolder = "temp";
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
@@ -18,15 +19,24 @@ async function scrapeInstagram() {
     if(!fs.existsSync(folderName)){
         fs.mkdirSync(folderName);
     }
-    console.log(content)
-    if(content.indexOf("Something went wrong") === 0){
-        console.log("Write file to cache");
-        fs.writeFileSync("test.html",content);
+    if(!fs.existsSync(tempFolder)){
+        fs.mkdirSync(tempFolder);
     }
-    else {
-        console.log("We were rate limited, read file from cache");
-        content = fs.readFileSync("test.html");
-    }
+    const now = new Date();
+    const fname = `test_${now.toString()}.html`;
+    fs.writeFileSync("temp/"+fname,content);
+    content = fs.readFileSync("temp/"+fname);
+    
+    // let content = fs.readFileSync("temp/test_Wed Oct 02 2024 09:22:22 GMT-0400 (Eastern Daylight Time).html","utf-8");
+    // // console.log(content.indexOf("Something went wrong"));
+    // if(content.indexOf("Something went wrong") >= 0){
+    //     console.log("Use cache");
+    // }
+    // else {
+    //     console.log("Write file !");
+    // }
+    
+    // console.log(content);
     // const {document} = new JSDOM(content).window;
     // const articleNode = document.querySelector('article');
     // const images = articleNode.querySelectorAll('img');
