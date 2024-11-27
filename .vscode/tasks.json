@@ -7,8 +7,11 @@
             "label": "echo",
             "type": "shell",
             "command": "./build.sh",
+            "args": [
+                // "--release"
+            ],
             "options": {
-                "cwd": "./clay_ookee"   
+                "cwd": "${workspaceFolder}"   
             },
             "group": {
                 "kind": "build",

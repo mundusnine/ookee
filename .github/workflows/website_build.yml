@@ -16,10 +16,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+            submodules: 'true'
       
       - name: Update and install clang
         run: sudo apt update && sudo apt install clang
-            
+      
+      - name: List directory contents
+        run: ls
+      
       - name: Build site
         run: ./build.sh --release
 
