@@ -9,6 +9,11 @@ on:
     branches: [ "main" ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -19,11 +24,8 @@ jobs:
         with:
             submodules: 'true'
       
-      - name: Update and install clang
-        run: sudo apt update && sudo apt install clang
-      
-      - name: List directory contents
-        run: ls
+      - name: Install clang
+        run: sudo apt install clang
       
       - name: Build site
         run: ./build.sh --release

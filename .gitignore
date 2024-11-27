@@ -4,3 +4,4 @@ temp
 clay_ookee/build
 *.pdf
 build
+!.github
