@@ -340,7 +340,7 @@
             }},
         };
         const { instance } = await WebAssembly.instantiateStreaming(
-            fetch("/index.wasm"), importObject
+            fetch("/ookee/index.wasm"), importObject
         );
         memoryDataView = new DataView(new Uint8Array(instance.exports.memory.buffer).buffer);
         scratchSpaceAddress = instance.exports.__heap_base.value;
