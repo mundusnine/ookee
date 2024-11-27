@@ -47,28 +47,11 @@ void LandingPageDesktop() {
             }
             CLAY(CLAY_ID("HeroImageOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_PERCENT(0.45f) }, .childAlignment = { CLAY_ALIGN_X_RIGHT } })) {
                 CLAY(CLAY_ID("HeroSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
-                CLAY(CLAY_ID("RotateLogo"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIT({ .min = 100 }) } }),CLAY_IMAGE({ .sourceDimensions = { 636, 636 }, .sourceURL = CLAY_STRING("/images/ookee_Favicon.png") }));
+                CLAY(CLAY_ID("RotateLogo"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIT({ .min = 100 }) } }),CLAY_IMAGE({ .sourceDimensions = { 636, 636 }, .sourceURL = CLAY_STRING("/ookee/images/ookee_Favicon.png") }));
             }
         }
     }
 }
-
-// void LandingPageMobile() {
-//     CLAY(CLAY_ID("LandingPage1Mobile"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { .width = CLAY_SIZING_GROW(), .height = CLAY_SIZING_FIT({ .min = windowHeight - 70 }) }, .childAlignment = {CLAY_ALIGN_X_CENTER, .y = CLAY_ALIGN_Y_CENTER}, .padding = { 16, 32 }, .childGap = 32 })) {
-//         CLAY(CLAY_ID("LeftText"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8 })) {
-//             CLAY_TEXT(CLAY_STRING("Clay is a flex-box style UI auto layout library in C, with declarative syntax and microsecond performance."), CLAY_TEXT_CONFIG({ .fontSize = 48, .fontId = FONT_ID_TITLE_56, .textColor = COLOR_RED }));
-//             CLAY(CLAY_ID("LandingPageSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW(), .height = CLAY_SIZING_FIXED(32) } })) {}
-//             CLAY_TEXT(CLAY_STRING("Clay is laying out this webpage right now!"), CLAY_TEXT_CONFIG({ .fontSize = 32, .fontId = FONT_ID_TITLE_36, .textColor = COLOR_ORANGE }));
-//         }
-//         CLAY(CLAY_ID("HeroImageOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { .width = CLAY_SIZING_GROW() }, .childAlignment = { CLAY_ALIGN_X_CENTER }, .childGap = 16 })) {
-//             // LandingPageBlob(1, 28, COLOR_BLOB_BORDER_5, CLAY_STRING("High performance"), CLAY_STRING("/images/check_5.png"));
-//             // LandingPageBlob(2, 28, COLOR_BLOB_BORDER_4, CLAY_STRING("Flexbox-style responsive layout"), CLAY_STRING("/images/check_4.png"));
-//             // LandingPageBlob(3, 28, COLOR_BLOB_BORDER_3, CLAY_STRING("Declarative syntax"), CLAY_STRING("/images/check_3.png"));
-//             // LandingPageBlob(4, 28, COLOR_BLOB_BORDER_2, CLAY_STRING("Single .h file for C/C++"), CLAY_STRING("/images/check_2.png"));
-//             // LandingPageBlob(5, 28, COLOR_BLOB_BORDER_1, CLAY_STRING("Compile to 15kb .wasm"), CLAY_STRING("/images/check_1.png"));
-//         }
-//     }
-// }
 
 void FeatureBlocksDesktop(Clay_ScrollContainerData scrollData,float lerpValue) {
     CLAY(CLAY_ID("FeatureBlocksOuter"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0f) } })) {
@@ -77,12 +60,12 @@ void FeatureBlocksDesktop(Clay_ScrollContainerData scrollData,float lerpValue) {
         snprintf(temp,256,"y: %f",lerpValue);//;
         // CLAY_TEXT(CLAY_STRING(temp), &headerTextConfig);
         if(scroll_value < 12.0f){
-            CLAY(CLAY_ID("ChristianeHero0"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/images/christiane0.png") }));
+            CLAY(CLAY_ID("ChristianeHero0"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane0.png") }));
         }
         else if(scroll_value < 45.0f )
-            CLAY(CLAY_ID("ChristianeHero1"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/images/christiane1.png") }));
+            CLAY(CLAY_ID("ChristianeHero1"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane1.png") }));
         else{
-            CLAY(CLAY_ID("ChristianeHero2"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/images/christiane2.png") }));
+            CLAY(CLAY_ID("ChristianeHero2"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane2.png") }));
         }
     }
 }
@@ -105,13 +88,13 @@ void FeatureBlocksDesktop(Clay_ScrollContainerData scrollData,float lerpValue) {
 //     }
 // }
 const Clay_String portraits[] = {
-    CLAY_STRING("/images/portrait0.png"),
-    CLAY_STRING("/images/portrait1.png"),
-    CLAY_STRING("/images/portrait2.png"),
-    CLAY_STRING("/images/portrait3.png"),
-    CLAY_STRING("/images/portrait4.png"),
-    CLAY_STRING("/images/portrait5.png"),
-    CLAY_STRING("/images/portrait6.png")
+    CLAY_STRING("/ookee/images/portrait0.png"),
+    CLAY_STRING("/ookee/images/portrait1.png"),
+    CLAY_STRING("/ookee/images/portrait2.png"),
+    CLAY_STRING("/ookee/images/portrait3.png"),
+    CLAY_STRING("/ookee/images/portrait4.png"),
+    CLAY_STRING("/ookee/images/portrait5.png"),
+    CLAY_STRING("/ookee/images/portrait6.png")
 };
 const size_t portraits_num = sizeof(portraits)/sizeof(portraits[0]);
 void PortraitPageDesktop(float lerpValue) {
@@ -149,7 +132,7 @@ void PortraitPageDesktop(float lerpValue) {
             }
             CLAY(CLAY_ID("PortraitPageRightImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.35f) }, .childAlignment = {.x = CLAY_ALIGN_X_RIGHT} })) {
                 //@TODO: Add animation
-                int portrait_idx =  scroll_value >= 0.55f ? 1 : 0;
+                int portrait_idx =  scroll_value >= 100.0f ? portraits_num-1 : 0;
                 CLAY(CLAY_ID("PortraitPageRightImageInner"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIT({ .min = 248 *0.75f  }),CLAY_SIZING_FIT({ .min = 318 *0.75f }) } }), CLAY_IMAGE({ .sourceDimensions = {248, 318}, .sourceURL = portraits[portrait_idx] })) {}
             }
         }
@@ -166,7 +149,7 @@ void PortraitPageDesktop(float lerpValue) {
 //             CLAY_TEXT(CLAY_STRING("Create your own library of re-usable components from UI primitives like text, images and rectangles."), CLAY_TEXT_CONFIG({ .fontSize = 28, .fontId = FONT_ID_BODY_36, .textColor = COLOR_RED }));
 //         }
 //         CLAY(CLAY_ID("SyntaxPageRightImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW() }, .childAlignment = {.x = CLAY_ALIGN_X_CENTER} })) {
-//             CLAY(CLAY_ID("SyntaxPageRightImageInner"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW({ .max = 568 }) } }), CLAY_IMAGE({ .sourceDimensions = {1136, 1194}, .sourceURL = CLAY_STRING("/images/declarative.png") } )) {}
+//             CLAY(CLAY_ID("SyntaxPageRightImageInner"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW({ .max = 568 }) } }), CLAY_IMAGE({ .sourceDimensions = {1136, 1194}, .sourceURL = CLAY_STRING("/ookee/images/declarative.png") } )) {}
 //         }
 //     }
 // }
@@ -187,7 +170,7 @@ void GalleryPageBlob(int index,Clay_Color color, Clay_String imageURL) {
 
 }
 #define NUM_IMGS 12
-#define IMG_PATH "/images/insta/"
+#define IMG_PATH "/ookee/images/insta/"
 Clay_String image_names[NUM_IMGS] = {
     CLAY_STRING(IMG_PATH"0.png"),
     CLAY_STRING(IMG_PATH"1.png"),
@@ -278,7 +261,7 @@ void Footer() {
     CLAY(CLAY_ID("FooterOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { .width = CLAY_SIZING_GROW() }, .childAlignment = { CLAY_ALIGN_X_LEFT }, .childGap = GALLERY_GAP }),CLAY_RECTANGLE({ .color = COLOR_WHITE })) {
         CLAY_TEXT(CLAY_STRING(" "), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 16, .textColor = COLOR_BLACK }));
         CLAY(CLAY_ID("FooterTop"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIXED(50) }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .childGap = 16, .padding = { PAGE_PADDING * 0.5f } })) {
-            CLAY(CLAY_ID("FLogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/images/ookee.png") }));
+            CLAY(CLAY_ID("FLogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/ookee/images/ookee.png") }));
             CLAY(CLAY_ID("FHeadSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
             CLAY(CLAY_ID("FLinkContact"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(75) }, .padding = {8} }), CLAY_RECTANGLE({ .link = CLAY_STRING("mailto:christiane@ookee.ca"), .color = {0,0,0,0} })) {
                 CLAY_TEXT(CLAY_STRING("Me contacter"), CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = 12, .textColor = COLOR_BLACK }));
@@ -289,7 +272,7 @@ void Footer() {
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.facebook.com/ookeestudio"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
-                CLAY(CLAY_ID("FFbImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.75),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 56, 89 }, .sourceURL = CLAY_STRING("/images/Facebook.png") }));
+                CLAY(CLAY_ID("FFbImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.75),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 56, 89 }, .sourceURL = CLAY_STRING("/ookee/images/Facebook.png") }));
             }
             CLAY(
                 CLAY_LAYOUT(
@@ -297,7 +280,7 @@ void Footer() {
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.instagram.com/kri_ookee/?hl=fr-ca"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
-                CLAY(CLAY_ID("FInstaImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 80, 80 }, .sourceURL = CLAY_STRING("/images/Instagram.png") }));
+                CLAY(CLAY_ID("FInstaImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 80, 80 }, .sourceURL = CLAY_STRING("/ookee/images/Instagram.png") }));
             }
             
         }
@@ -322,7 +305,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
     Clay_BeginLayout();
     CLAY(CLAY_ID("OuterContainer"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_GROW() } }), CLAY_RECTANGLE({ .color = COLOR_LIGHT })) {
         CLAY(CLAY_ID("Header"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIXED(50) }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .childGap = 16, .padding = { 32 } })) {
-            CLAY(CLAY_ID("LogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/images/ookee.png") }));
+            CLAY(CLAY_ID("LogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/ookee/images/ookee.png") }));
             CLAY(CLAY_ID("HeadSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
             CLAY(
                 CLAY_LAYOUT(
@@ -330,7 +313,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.facebook.com/ookeestudio"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
-                CLAY(CLAY_ID("FbImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.75),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 56, 89 }, .sourceURL = CLAY_STRING("/images/Facebook.png") }));
+                CLAY(CLAY_ID("FbImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.75),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 56, 89 }, .sourceURL = CLAY_STRING("/ookee/images/Facebook.png") }));
             }
             CLAY(
                 CLAY_LAYOUT(
@@ -338,7 +321,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.instagram.com/kri_ookee/?hl=fr-ca"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
-                CLAY(CLAY_ID("InstaImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 80, 80 }, .sourceURL = CLAY_STRING("/images/Instagram.png") }));
+                CLAY(CLAY_ID("InstaImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0),CLAY_SIZING_PERCENT(1.0) } }),CLAY_IMAGE({ .sourceDimensions = { 80, 80 }, .sourceURL = CLAY_STRING("/ookee/images/Instagram.png") }));
             }
             
         }

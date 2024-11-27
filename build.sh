@@ -8,7 +8,12 @@ for arg in "$@"; do
     fi
 done
 
-mkdir -p build                                                            \
+build_dir="build"
+if $release_flag; then
+    build_dir="build/ookee"  # Change to build/ookee if release_flag is set
+fi
+
+mkdir -p $build_dir                                                       \
 && clang                                                                  \
 -Wall                                                                     \
 -Werror                                                                   \
@@ -24,12 +29,12 @@ mkdir -p build                                                            \
 -Wl,--export=__heap_base                                                  \
 -Wl,--export=ACTIVE_RENDERER_INDEX                                        \
 -Wl,--initial-memory=6553600                                              \
--o build/index.wasm                                                       \
+-o $build_dir/index.wasm                                                  \
 main.c                                                                    \
-&& cp -r fonts/ build/fonts                                               \
-&& cp index.html build/index.html && cp -r images/ build/images           \
+&& cp -r fonts/ $build_dir/fonts                                          \
+&& cp index.html build/index.html && cp -r images/ $build_dir/images      \
 
 if $release_flag; then
-    echo "Release mode activated."
+    echo "Release mode activated."                                            
     cp server.py build/server.py
 fi
