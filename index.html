@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="/clay/fonts/Calistoga-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/clay/fonts/Quicksand-Semibold.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/clay/fonts/Inter_28pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/clay/fonts/Inter_28pt-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Calistoga-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Quicksand-Semibold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Inter_28pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Inter_28pt-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
     <title>Ookee</title>
     <style>
         html, body {
@@ -24,13 +24,13 @@
           font-family: 'Inter_Reg';
           font-style: normal;
           font-weight: 400;
-          src: url('/clay/fonts/Inter_28pt-Regular.ttf') format('truetype');
+          src: url('/fonts/Inter_28pt-Regular.ttf') format('truetype');
         }
         @font-face {
           font-family: 'Inter_SBold';
           font-style: normal;
           font-weight: 400;
-          src: url('/clay/fonts/Inter_28pt-SemiBold.ttf') format('truetype');
+          src: url('/fonts/Inter_28pt-SemiBold.ttf') format('truetype');
         }
 
         body > canvas {
@@ -340,7 +340,7 @@
             }},
         };
         const { instance } = await WebAssembly.instantiateStreaming(
-            fetch("/clay/index.wasm"), importObject
+            fetch("/index.wasm"), importObject
         );
         memoryDataView = new DataView(new Uint8Array(instance.exports.memory.buffer).buffer);
         scratchSpaceAddress = instance.exports.__heap_base.value;
