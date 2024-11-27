@@ -3,7 +3,7 @@ const { JSDOM } = require('jsdom');
 const fs = require('fs');
 
 async function scrapeInstagram() {
-    const folderName = "assets/images";
+    const folderName = "images/insta";
     const tempFolder = "temp";
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -11,7 +11,6 @@ async function scrapeInstagram() {
     await page.goto('https://www.instagram.com/kri_ookee', { waitUntil: 'networkidle2' });
     await page.waitForFunction(() => document.querySelectorAll('img').length > 0);
     await page.evaluate(() => {
-        window.scrollTo(0, document.body.scrollHeight-50);
         console.log(document.querySelectorAll('img').length);
     });    
     await page.screenshot({ path: 'screenshot.png' });
