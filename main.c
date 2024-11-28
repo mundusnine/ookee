@@ -220,16 +220,18 @@ void PortfolioPageMobile(float lerpValue) {
 
 void Footer() {
     CLAY(CLAY_ID("FooterOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { .width = CLAY_SIZING_GROW() }, .childAlignment = { CLAY_ALIGN_X_LEFT }, .childGap = GALLERY_GAP }),CLAY_RECTANGLE({ .color = COLOR_WHITE })) {
-        CLAY_TEXT(CLAY_STRING(" "), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 16, .textColor = COLOR_BLACK }));
-        CLAY(CLAY_ID("FooterTop"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIXED(50) }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .childGap = 16, .padding = { PAGE_PADDING * 0.5f } })) {
+        const float PAD = PAGE_PADDING * 0.33f;
+        CLAY_TEXT(CLAY_STRING(" "), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = PAD, .textColor = COLOR_BLACK }));
+        CLAY(CLAY_ID("FooterTop"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIXED(60) }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .childGap = 16, .padding = { PAGE_PADDING * 0.5f } })) {
             CLAY(CLAY_ID("FLogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/ookee/images/ookee.png") }));
             CLAY(CLAY_ID("FHeadSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
-            CLAY(CLAY_ID("FLinkContact"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(75) }, .padding = {8} }), CLAY_RECTANGLE({ .link = CLAY_STRING("mailto:christiane@ookee.ca"), .color = {0,0,0,0} })) {
-                CLAY_TEXT(CLAY_STRING("Me contacter"), CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = 12, .textColor = COLOR_BLACK }));
+            const int icon_size = 20;
+            CLAY(CLAY_ID("FLinkContact"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(96) } }), CLAY_RECTANGLE({ .link = CLAY_STRING("mailto:christiane@ookee.ca"), .color = {0,0,0,0} })) {
+                CLAY_TEXT(CLAY_STRING("Me contacter"), CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = icon_size, .textColor = COLOR_BLACK }));
             }
             CLAY(
                 CLAY_LAYOUT(
-                    { .sizing = { CLAY_SIZING_FIXED(16) } }
+                    { .sizing = { CLAY_SIZING_FIXED(icon_size) } }
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.facebook.com/ookeestudio"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
@@ -237,7 +239,7 @@ void Footer() {
             }
             CLAY(
                 CLAY_LAYOUT(
-                    { .sizing = { CLAY_SIZING_FIXED(16) } }
+                    { .sizing = { CLAY_SIZING_FIXED(icon_size) } }
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.instagram.com/kri_ookee/?hl=fr-ca"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
@@ -246,9 +248,9 @@ void Footer() {
             
         }
         CLAY(CLAY_ID("FooterBott"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW() }, .padding = { .x=PAGE_PADDING * 0.5f } })) {
-            CLAY_TEXT(CLAY_STRING("© 2024 Ookee — Le studio de Kristiane. Tous droits réservés."), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 10, .textColor = COLOR_BLACK }));
+            CLAY_TEXT(CLAY_STRING("© 2025 Ookee — Le studio de Kristiane. Tous droits réservés."), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 16, .textColor = COLOR_BLACK }));
         }
-        CLAY_TEXT(CLAY_STRING(" "), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 16, .textColor = COLOR_BLACK }));
+        CLAY_TEXT(CLAY_STRING(" "), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = PAD, .textColor = COLOR_BLACK }));
     }
 }
 
