@@ -36,57 +36,44 @@ Clay_TextElementConfig headerTextConfig = (Clay_TextElementConfig) { .fontId = 2
 Clay_TextElementConfig blobTextConfig = (Clay_TextElementConfig) { .fontId = 2, .fontSize = 30, .textColor = {244, 235, 230, 255} };
 static float scroll_value = 0.0f;
 
-void LandingPageDesktop() {
+void LandingPageDesktop(Clay_TextElementConfig * big_font,Clay_TextElementConfig * smol_font,Clay_SizingAxis logo_size) {
     CLAY(CLAY_ID("LandingPage1Desktop"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW(), .height = CLAY_SIZING_FIT({ .min = windowHeight * 0.25f }) }, .childAlignment = {.y = CLAY_ALIGN_Y_CENTER}})) {
         CLAY(CLAY_ID("LandingPage1"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_GROW() }, .childAlignment = {.y = CLAY_ALIGN_Y_CENTER}, .padding = { PAGE_PADDING, PAGE_PADDING }, .childGap = 32 }), CLAY_BORDER({ .left = { 2 }, .right = { 2 } })) {
             CLAY(CLAY_ID("LeftText"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(0.55f) }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8, .padding = { .x=PAGE_PADDING} })) {
-                CLAY_TEXT(CLAY_STRING("Designer graphique, DA & DC"), CLAY_TEXT_CONFIG({ .fontSize = 16, .fontId = FONT_ID_TITLE_36, .textColor = COLOR_BLACK }));
-                CLAY_TEXT(CLAY_STRING("C’est bien moi — "), CLAY_TEXT_CONFIG({ .fontSize = 36, .fontId = FONT_ID_TITLE_56, .textColor = COLOR_BLACK }));
-                CLAY_TEXT(CLAY_STRING("Christiane"), CLAY_TEXT_CONFIG({ .fontSize = 36, .fontId = FONT_ID_TITLE_56, .textColor = COLOR_BLACK }));
-                CLAY_TEXT(CLAY_STRING("Bienvenue dans mon studio"), CLAY_TEXT_CONFIG({ .fontSize = 16, .fontId = FONT_ID_TITLE_36, .textColor = COLOR_BLACK }));
+                CLAY_TEXT(CLAY_STRING("Designer graphique, DA & DC"), smol_font);
+                CLAY_TEXT(CLAY_STRING("C’est bien moi — "), big_font);
+                CLAY_TEXT(CLAY_STRING("Christiane"), big_font);
+                CLAY_TEXT(CLAY_STRING("Bienvenue dans mon studio"), smol_font);
             }
             CLAY(CLAY_ID("HeroImageOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_PERCENT(0.45f) }, .childAlignment = { CLAY_ALIGN_X_RIGHT } })) {
                 CLAY(CLAY_ID("HeroSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
-                CLAY(CLAY_ID("RotateLogo"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIT({ .min = 100 }) } }),CLAY_IMAGE({ .sourceDimensions = { 636, 636 }, .sourceURL = CLAY_STRING("/ookee/images/ookee_Favicon.png") }));
+                CLAY(CLAY_ID("RotateLogo"), CLAY_LAYOUT({ .sizing = { logo_size } }),CLAY_IMAGE({ .sourceDimensions = { 636, 636 }, .sourceURL = CLAY_STRING("/ookee/images/ookee_Favicon.png") }));
             }
         }
     }
 }
 
-void FeatureBlocksDesktop(Clay_ScrollContainerData scrollData,float lerpValue) {
+void FeatureBlocks(Clay_ScrollContainerData scrollData,int isMobile,float lerpValue) {
     CLAY(CLAY_ID("FeatureBlocksOuter"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0f) } })) {
         static char temp[256] = {0};
         memset(temp,0,256);
         snprintf(temp,256,"y: %f",lerpValue);//;
         // CLAY_TEXT(CLAY_STRING(temp), &headerTextConfig);
-        if(scroll_value < 12.0f){
-            CLAY(CLAY_ID("ChristianeHero0"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane0.png") }));
+        float values[2] = {scrollData.contentDimensions.height *0.0005,scrollData.contentDimensions.height*0.002};
+        if(isMobile){
+
         }
-        else if(scroll_value < 45.0f )
-            CLAY(CLAY_ID("ChristianeHero1"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane1.png") }));
+        if(scroll_value < values[0]){
+            CLAY(CLAY_ID("ChristianeHero0"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(windowWidth)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane0.png") }));
+        }
+        else if(scroll_value < values[1] )
+            CLAY(CLAY_ID("ChristianeHero1"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(windowWidth)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane1.png") }));
         else{
-            CLAY(CLAY_ID("ChristianeHero2"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(1.0f)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane2.png") }));
+            CLAY(CLAY_ID("ChristianeHero2"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_FIXED(windowWidth)} }),CLAY_IMAGE({ .sourceDimensions = { 1280, 853 }, .sourceURL = CLAY_STRING("/ookee/images/christiane2.png") }));
         }
     }
 }
 
-// void FeatureBlocksMobile() {
-//     CLAY(CLAY_ID("FeatureBlocksInner"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_GROW() } }), CLAY_BORDER({ .betweenChildren = { .width = 2, .color = COLOR_RED } })) {
-//         Clay_TextElementConfig *textConfig = CLAY_TEXT_CONFIG({ .fontSize = 24, .fontId = FONT_ID_BODY_24, .textColor = COLOR_RED });
-//         CLAY(CLAY_ID("HFileBoxOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_GROW() }, .childAlignment = {0, CLAY_ALIGN_Y_CENTER}, .padding = {16, 32}, .childGap = 8 })) {
-//             CLAY(CLAY_ID("HFileIncludeOuter"), CLAY_LAYOUT({ .padding = {8, 4} }), CLAY_RECTANGLE({ .color = COLOR_RED, .cornerRadius = CLAY_CORNER_RADIUS(8) })) {
-//                 CLAY_TEXT(CLAY_STRING("#include clay.h"), CLAY_TEXT_CONFIG({ .fontSize = 24, .fontId = FONT_ID_BODY_24, .textColor = COLOR_LIGHT }));
-//             }
-//             CLAY_TEXT(CLAY_STRING("~2000 lines of C99."), textConfig);
-//             CLAY_TEXT(CLAY_STRING("Zero dependencies, including no C standard library."), textConfig);
-//         }
-//         CLAY(CLAY_ID("BringYourOwnRendererOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_GROW() }, .childAlignment = {0, CLAY_ALIGN_Y_CENTER}, .padding = {.x = 16, .y = 32}, .childGap = 8 })) {
-//             CLAY_TEXT(CLAY_STRING("Renderer agnostic."), CLAY_TEXT_CONFIG({ .fontId = FONT_ID_BODY_24, .fontSize = 24, .textColor = COLOR_ORANGE }));
-//             CLAY_TEXT(CLAY_STRING("Layout with clay, then render with Raylib, WebGL Canvas or even as HTML."), textConfig);
-//             CLAY_TEXT(CLAY_STRING("Flexible output for easy compositing in your custom engine or environment."), textConfig);
-//         }
-//     }
-// }
 const Clay_String portraits[] = {
     CLAY_STRING("/ookee/images/portrait0.png"),
     CLAY_STRING("/ookee/images/portrait1.png"),
@@ -97,8 +84,8 @@ const Clay_String portraits[] = {
     CLAY_STRING("/ookee/images/portrait6.png")
 };
 const size_t portraits_num = sizeof(portraits)/sizeof(portraits[0]);
-void PortraitPageDesktop(float lerpValue) {
-    CLAY(CLAY_ID("PortraitPageDesktop"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIT({ .min = windowHeight * 0.5f }) }, .childAlignment = {0, CLAY_ALIGN_Y_CENTER}, .padding = {.x = PAGE_PADDING} })) {
+void PortraitPage(int isMobile,float lerpValue) {
+    CLAY(CLAY_ID("PortraitPage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIT({ .min = windowHeight * 0.5f }) }, .childAlignment = {0, CLAY_ALIGN_Y_CENTER}, .padding = {.x = PAGE_PADDING} })) {
         CLAY(CLAY_ID("PortraitPage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_GROW() }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .padding = { .x=PAGE_PADDING}, .childGap = 32 })) {
             CLAY(CLAY_ID("PortraitPageLeftText"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.65f) }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8})) {
                 #define PORTRAIT_FONT_SIZE 36
@@ -132,27 +119,13 @@ void PortraitPageDesktop(float lerpValue) {
             }
             CLAY(CLAY_ID("PortraitPageRightImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.35f) }, .childAlignment = {.x = CLAY_ALIGN_X_RIGHT} })) {
                 //@TODO: Add animation
-                int portrait_idx =  scroll_value >= 100.0f ? portraits_num-1 : 0;
+                float scroll_amount = isMobile ? windowHeight * 0.1f : windowHeight * 0.25f;
+                int portrait_idx =  scroll_value >= scroll_amount ? portraits_num-1 : 0;
                 CLAY(CLAY_ID("PortraitPageRightImageInner"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIT({ .min = 248 *0.75f  }),CLAY_SIZING_FIT({ .min = 318 *0.75f }) } }), CLAY_IMAGE({ .sourceDimensions = {248, 318}, .sourceURL = portraits[portrait_idx] })) {}
             }
         }
     }
 }
-
-// void PortraitPageMobile() {
-//     CLAY(CLAY_ID("SyntaxPageDesktop"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIT({ .min = windowHeight - 50 }) }, .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER}, .padding = {16, 32}, .childGap = 16 })) {
-//         CLAY(CLAY_ID("SyntaxPageLeftText"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW() }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8 })) {
-//             CLAY_TEXT(CLAY_STRING("Declarative Syntax"), CLAY_TEXT_CONFIG({ .fontSize = 48, .fontId = FONT_ID_TITLE_56, .textColor = COLOR_RED }));
-//             CLAY(CLAY_ID("SyntaxSpacer"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW({ .max = 16 }) } })) {}
-//             CLAY_TEXT(CLAY_STRING("Flexible and readable declarative syntax with nested UI element hierarchies."), CLAY_TEXT_CONFIG({ .fontSize = 28, .fontId = FONT_ID_BODY_36, .textColor = COLOR_RED }));
-//             CLAY_TEXT(CLAY_STRING("Mix elements with standard C code like loops, conditionals and functions."), CLAY_TEXT_CONFIG({ .fontSize = 28, .fontId = FONT_ID_BODY_36, .textColor = COLOR_RED }));
-//             CLAY_TEXT(CLAY_STRING("Create your own library of re-usable components from UI primitives like text, images and rectangles."), CLAY_TEXT_CONFIG({ .fontSize = 28, .fontId = FONT_ID_BODY_36, .textColor = COLOR_RED }));
-//         }
-//         CLAY(CLAY_ID("SyntaxPageRightImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW() }, .childAlignment = {.x = CLAY_ALIGN_X_CENTER} })) {
-//             CLAY(CLAY_ID("SyntaxPageRightImageInner"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW({ .max = 568 }) } }), CLAY_IMAGE({ .sourceDimensions = {1136, 1194}, .sourceURL = CLAY_STRING("/ookee/images/declarative.png") } )) {}
-//         }
-//     }
-// }
 
 Clay_Color ColorLerp(Clay_Color a, Clay_Color b, float amount) {
     return (Clay_Color) {
@@ -164,27 +137,15 @@ Clay_Color ColorLerp(Clay_Color a, Clay_Color b, float amount) {
 }
 
 void GalleryPageBlob(int index,Clay_Color color, Clay_String imageURL) {
-    CLAY(CLAY_IDI("HeroBlob", index), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.33) } })) {
-        CLAY(CLAY_IDI("Gallery", index), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0) } }), CLAY_BORDER_OUTSIDE_RADIUS(2, color, 10), CLAY_IMAGE({ .sourceDimensions = { 600, 600 }, .sourceURL = imageURL })) {}
+    CLAY(CLAY_IDI("HeroBlob", index), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(0.325) } })) {
+        CLAY(CLAY_IDI("Gallery", index), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_PERCENT(1.0) } }), CLAY_BORDER_OUTSIDE_RADIUS(2, color, 10), CLAY_IMAGE({ .sourceDimensions = { 1080, 1080 }, .sourceURL = imageURL })) {}
     }
 
 }
-#define NUM_IMGS 12
+
 #define IMG_PATH "/ookee/images/insta/"
-Clay_String image_names[NUM_IMGS] = {
-    CLAY_STRING(IMG_PATH"0.png"),
-    CLAY_STRING(IMG_PATH"1.png"),
-    CLAY_STRING(IMG_PATH"2.png"),
-    CLAY_STRING(IMG_PATH"3.png"),
-    CLAY_STRING(IMG_PATH"4.png"),
-    CLAY_STRING(IMG_PATH"5.png"),
-    CLAY_STRING(IMG_PATH"6.png"),
-    CLAY_STRING(IMG_PATH"7.png"),
-    CLAY_STRING(IMG_PATH"8.png"),
-    CLAY_STRING(IMG_PATH"9.png"),
-    CLAY_STRING(IMG_PATH"10.png"),
-    CLAY_STRING(IMG_PATH"11.png"),
-};
+#include "insta_images.c"
+
 void SeeMoarButton(Clay_String text) {
     CLAY(CLAY_LAYOUT({ .sizing = {CLAY_SIZING_FIXED(windowWidth * 0.33f * 0.5f) }, .padding = {16, 16},.childAlignment = { CLAY_ALIGN_X_CENTER } }),
         CLAY_RECTANGLE({.link = CLAY_STRING("https://www.instagram.com/kri_ookee/?hl=fr-ca"), .color = Clay_Hovered() ? COLOR_GREY : COLOR_BLACK, .cornerRadius = CLAY_CORNER_RADIUS(10) })
@@ -307,9 +268,10 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
         CLAY(CLAY_ID("Header"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_FIXED(50) }, .childAlignment = { 0, CLAY_ALIGN_Y_CENTER }, .childGap = 16, .padding = { 32 } })) {
             CLAY(CLAY_ID("LogoImage"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_FIXED(96),CLAY_SIZING_FIXED(32) } }),CLAY_IMAGE({ .sourceDimensions = { 552, 168 }, .sourceURL = CLAY_STRING("/ookee/images/ookee.png") }));
             CLAY(CLAY_ID("HeadSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
+            #define ICON_SIZES 24
             CLAY(
                 CLAY_LAYOUT(
-                    { .sizing = { CLAY_SIZING_FIXED(32),CLAY_SIZING_FIXED(32) } }
+                    { .sizing = { CLAY_SIZING_FIXED(ICON_SIZES),CLAY_SIZING_FIXED(ICON_SIZES) } }
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.facebook.com/ookeestudio"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
@@ -317,7 +279,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
             }
             CLAY(
                 CLAY_LAYOUT(
-                    { .sizing = { CLAY_SIZING_FIXED(32),CLAY_SIZING_FIXED(32) } }
+                    { .sizing = { CLAY_SIZING_FIXED(ICON_SIZES),CLAY_SIZING_FIXED(ICON_SIZES) } }
                 ),
                 CLAY_RECTANGLE({.link = CLAY_STRING("https://www.instagram.com/kri_ookee/?hl=fr-ca"), .color = Clay_Hovered() ? COLOR_LIGHT_HOVER : COLOR_LIGHT })
             ){
@@ -332,19 +294,23 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
         ) {
             Clay_ScrollContainerData scrollData = Clay_GetScrollContainerData(Clay_GetElementId(CLAY_STRING("OuterScrollContainer")));
             scroll_value = -(scrollData.scrollPosition->y / scrollData.contentDimensions.height) * (scrollData.scrollContainerDimensions.height-12);
-            // if (mobileScreen) {
-            //     LandingPageMobile();
-            //     FeatureBlocksMobile();
-            //     PortraitPageMobile();
-            //     PortfolioPageMobile(lerpValue);
-            //     RendererPageMobile();
-            // } else {
-                LandingPageDesktop();
-                FeatureBlocksDesktop(scrollData,lerpValue);
-                PortraitPageDesktop(lerpValue);
-                PortfolioPageDesktop(lerpValue);
-                Footer();
-            // }
+            if(mobileScreen){
+                const Clay_TextElementConfig * mob_big = CLAY_TEXT_CONFIG({.fontSize = 36,.fontId = FONT_ID_TITLE_56,.textColor = COLOR_BLACK });
+                const Clay_TextElementConfig * mob_smol = CLAY_TEXT_CONFIG({ .fontSize = 16, .fontId = FONT_ID_TITLE_36,.textColor = COLOR_BLACK});
+                Clay_SizingAxis mob_size = CLAY_SIZING_FIT({ .min = windowHeight * 0.1f });
+                LandingPageDesktop((Clay_TextElementConfig *)mob_big,(Clay_TextElementConfig *)mob_smol,mob_size);
+            }
+            else {
+                const Clay_TextElementConfig * big = CLAY_TEXT_CONFIG({.fontSize = 72,.fontId = FONT_ID_TITLE_56,.textColor = COLOR_BLACK });
+                const Clay_TextElementConfig * smol = CLAY_TEXT_CONFIG({ .fontSize = 26, .fontId = FONT_ID_TITLE_36,.textColor = COLOR_BLACK});
+                Clay_SizingAxis size = CLAY_SIZING_FIT({ .min = windowHeight * 0.25f });
+                LandingPageDesktop((Clay_TextElementConfig *)big,(Clay_TextElementConfig *)smol,size);
+            }
+            FeatureBlocks(scrollData,mobileScreen,lerpValue);
+            PortraitPage(mobileScreen,lerpValue);
+            PortfolioPageDesktop(lerpValue);
+            Footer();
+            
         }
     }
     CLAY(CLAY_ID("LinkContact"), 
@@ -377,7 +343,6 @@ bool debugModeEnabled = false;
 CLAY_WASM_EXPORT("UpdateDrawFrame") Clay_RenderCommandArray UpdateDrawFrame(float width, float height, float mouseWheelX, float mouseWheelY, float mousePositionX, float mousePositionY, bool isTouchDown, bool isMouseDown, bool arrowKeyDownPressedThisFrame, bool arrowKeyUpPressedThisFrame, bool dKeyPressedThisFrame, float deltaTime) {
     windowWidth = width;
     windowHeight = height;
-    PAGE_PADDING = windowWidth *0.05f;
     Clay_SetLayoutDimensions((Clay_Dimensions) { width, height });
     if (deltaTime == deltaTime) { // NaN propagation can cause pain here
         animationLerpValue += deltaTime;
@@ -447,6 +412,7 @@ CLAY_WASM_EXPORT("UpdateDrawFrame") Clay_RenderCommandArray UpdateDrawFrame(floa
     if (debugModeEnabled) {
         isMobileScreen = windowWidth < 950;
     }
+    PAGE_PADDING = windowWidth *0.05f;
     return CreateLayout(isMobileScreen, animationLerpValue < 0 ? (animationLerpValue + 1) : (1 - animationLerpValue));
     //----------------------------------------------------------------------------------
 }
