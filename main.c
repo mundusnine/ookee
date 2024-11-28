@@ -39,13 +39,13 @@ static float scroll_value = 0.0f;
 void LandingPageDesktop(Clay_TextElementConfig * big_font,Clay_TextElementConfig * smol_font,Clay_SizingAxis logo_size) {
     CLAY(CLAY_ID("LandingPage1Desktop"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW(), .height = CLAY_SIZING_FIT({ .min = windowHeight * 0.25f }) }, .childAlignment = {.y = CLAY_ALIGN_Y_CENTER}})) {
         CLAY(CLAY_ID("LandingPage1"), CLAY_LAYOUT({ .sizing = { CLAY_SIZING_GROW(), CLAY_SIZING_GROW() }, .childAlignment = {.y = CLAY_ALIGN_Y_CENTER}, .padding = { PAGE_PADDING, PAGE_PADDING }, .childGap = 32 }), CLAY_BORDER({ .left = { 2 }, .right = { 2 } })) {
-            CLAY(CLAY_ID("LeftText"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(0.55f) }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8, .padding = { .x=PAGE_PADDING} })) {
+            CLAY(CLAY_ID("LeftText"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_PERCENT(0.60f) }, .layoutDirection = CLAY_TOP_TO_BOTTOM, .childGap = 8, .padding = { .x=PAGE_PADDING} })) {
                 CLAY_TEXT(CLAY_STRING("Designer graphique, DA & DC"), smol_font);
                 CLAY_TEXT(CLAY_STRING("C’est bien moi — "), big_font);
                 CLAY_TEXT(CLAY_STRING("Christiane"), big_font);
                 CLAY_TEXT(CLAY_STRING("Bienvenue dans mon studio"), smol_font);
             }
-            CLAY(CLAY_ID("HeroImageOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_PERCENT(0.45f) }, .childAlignment = { CLAY_ALIGN_X_RIGHT } })) {
+            CLAY(CLAY_ID("HeroImageOuter"), CLAY_LAYOUT({ .layoutDirection = CLAY_TOP_TO_BOTTOM, .sizing = { CLAY_SIZING_PERCENT(0.37f) }, .childAlignment = { CLAY_ALIGN_X_RIGHT } })) {
                 CLAY(CLAY_ID("HeroSpacer"), CLAY_LAYOUT({ .sizing = { .width = CLAY_SIZING_GROW() } })) {}
                 CLAY(CLAY_ID("RotateLogo"), CLAY_LAYOUT({ .sizing = { logo_size } }),CLAY_IMAGE({ .sourceDimensions = { 636, 636 }, .sourceURL = CLAY_STRING("/ookee/images/ookee_Favicon.png") }));
             }
@@ -297,7 +297,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
             if(mobileScreen){
                 const Clay_TextElementConfig * mob_big = CLAY_TEXT_CONFIG({.fontSize = 36,.fontId = FONT_ID_TITLE_56,.textColor = COLOR_BLACK });
                 const Clay_TextElementConfig * mob_smol = CLAY_TEXT_CONFIG({ .fontSize = 16, .fontId = FONT_ID_TITLE_36,.textColor = COLOR_BLACK});
-                Clay_SizingAxis mob_size = CLAY_SIZING_FIT({ .min = windowHeight * 0.1f });
+                Clay_SizingAxis mob_size = CLAY_SIZING_FIT({ .min = windowHeight * 0.15f });
                 LandingPageDesktop((Clay_TextElementConfig *)mob_big,(Clay_TextElementConfig *)mob_smol,mob_size);
             }
             else {
