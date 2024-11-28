@@ -5,3 +5,5 @@ clay_ookee/build
 *.pdf
 build
 !.github
+venv
+kri_ookee
