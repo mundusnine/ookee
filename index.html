@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="/ookee/fonts/Calistoga-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/ookee/fonts/Quicksand-Semibold.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="/ookee/fonts/Inter_28pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="/ookee/fonts/Inter_28pt-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
     <title>Ookee</title>
@@ -54,52 +52,6 @@
             pointer-events: all;
             white-space: pre;
         }
-
-        /* @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7))}
-        }
-        .slider {
-            background: white;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            height: 100px;
-            margin: auto;
-            overflow:hidden;
-            width: 100%;
-            
-            &::before,
-            &::after {
-                content: "";
-                height: 100px;
-                position: absolute;
-                width: 200px;
-                z-index: 2;
-            }
-            
-            &::after {
-                right: 0;
-                top: 0;
-                transform: rotateZ(180deg);
-            }
-
-            &::before {
-                left: 0;
-                top: 0;
-            }
-            
-            .slide-track {
-                animation: scroll 40s linear infinite;
-                display: flex;
-                width: calc(250px * 14);
-            }
-            
-            .slide {
-                height: 100px;
-                width: 250px;
-            }
-        } */
     </style>
 </head>
 <script type="module">
@@ -351,11 +303,20 @@
         memoryDataView.setFloat32(instance.exports.__heap_base.value, window.innerWidth, true);
         memoryDataView.setFloat32(instance.exports.__heap_base.value + 4, window.innerHeight, true);
         instance.exports.Clay_Initialize(arenaAddress, instance.exports.__heap_base.value);
+        let resizeTimeout;
+        window.addEventListener('resize',()=>{
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(()=>{
+                window.instance.exports.Clay_OnResize(window.innerWidth,window.innerHeight);
+                console.log(`Resize called: w ${window.innerWidth} h ${window.innerHeight}`);
+            },10);
+        });
         renderCommandSize = getStructTotalSize(renderCommandDefinition);
         renderLoop();
     }
-
+    let wholeDocDirty = false;
     function MemoryIsDifferent(one, two, length) {
+        if(wholeDocDirty) return wholeDocDirty;
         for (let i = 0; i < length; i++) {
             if (one[i] !== two[i]) {
                 return true;
@@ -363,22 +324,6 @@
         }
         return false;
     }
-    const clients = [
-        "Passion Jardins",
-        "Infinima",
-        "Monastère des Augustines",
-        "Nourcy",
-        "Promutuel",
-        "Maître Paysagiste",
-        "Radiologie lévis",
-        "La Boîte à Pain",
-        "Yellow Brick",
-        "Il Matto",
-        "Groupex",
-        "Fémina",
-        "Commissaire à la langue française",
-        "Fondation de l’Hôpital Sainte-Anne de Beaupré"
-    ];
 
     const separator = "  ·  ";
 
@@ -391,6 +336,14 @@
         let arrayOffset = memoryDataView.getUint32(scratchSpaceAddress + 8, true);
         let scissorStack = [{ nextAllocation: { x: 0, y: 0 }, element: htmlRoot, nextElementIndex: 0 }];
         let previousId = 0;
+        wholeDocDirty = window.instance.exports.Clay_GetRedrawDirty();
+        if(wholeDocDirty){
+            for (const key of Object.keys(elementCache)) {
+                elementCache[key].element.remove();
+                delete elementCache[key];
+            }
+            console.log("We should redraw everythign right ? right ?!?!?!?");
+        }
         for (let i = 0; i < length; i++, arrayOffset += renderCommandSize) {
             let entireRenderCommandMemory = new Uint32Array(memoryDataView.buffer.slice(arrayOffset, arrayOffset + renderCommandSize));
             let renderCommand = readStructAtAddress(arrayOffset, renderCommandDefinition);
@@ -412,28 +365,6 @@
                     default: break;
                 }
                 element = document.createElement(elementType);
-                // if( renderCommand.id.value == 3070967085){
-                //     let div = document.createElement('div');
-                //     div.setAttribute("class","slider")
-                //     let inner = document.createElement('div');
-                //     inner.setAttribute("class","slide-track")
-                //     for(let y = 0; y < clients.length;++y){
-                //         let client = document.createElement('div');
-                //         let sep = document.createElement('div');
-                //         client.setAttribute("class","slide")
-                //         sep.setAttribute("class","slide")
-                //         let client_content = document.createElement('div');
-                //         let sep_content = document.createElement('div');
-                //         client_content.innerText = clients[y];
-                //         sep_content.innerText = separator;
-                //         client.appendChild(client_content);
-                //         sep.appendChild(sep_content);
-                //         inner.appendChild(client);
-                //         inner.appendChild(sep);
-                //     }
-                //     div.appendChild(inner);
-                //     element.appendChild(div);
-                // }
                 element.id = renderCommand.id.value;
                 if (renderCommand.commandType.value === CLAY_RENDER_COMMAND_TYPE_SCISSOR_START) {
                     element.style.overflow = 'hidden';

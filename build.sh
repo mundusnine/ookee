@@ -35,6 +35,6 @@ main.c                                                                    \
 && cp index.html build/index.html && cp -r images/ $build_dir/images      \
 
 if $release_flag; then
-    echo "Release mode activated."                                            
+    echo "Local dev mode activated."                                            
     cp server.py build/server.py
 fi
