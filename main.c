@@ -186,7 +186,12 @@ void PortfolioPageDesktop(int isMobile,float lerpValue) {
         for(int i =0; i < NUM_IMGS;){
             CLAY(CLAY_IDI("GalleryImageInner",i), CLAY_LAYOUT({ .layoutDirection = CLAY_LEFT_TO_RIGHT, .sizing = { .width = CLAY_SIZING_FIT({ .min = windowWidth - PAGE_PADDING * 1.75 })}, .childAlignment = { CLAY_ALIGN_X_CENTER },.padding = { .x=PAGE_PADDING } })) {
                 for(int y = 0;y < 3;++y){
-                    GalleryPageBlob(i,bg_color,image_names[i]);
+                    if(i + y > NUM_IMGS){
+                        GalleryPageBlob(i,bg_color,image_names[i-1]);
+                    }
+                    else {
+                        GalleryPageBlob(i,bg_color,image_names[i]);
+                    }
                     ++i;
                 }
             }
@@ -314,7 +319,7 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
         CLAY_TEXT(CLAY_STRING("Me contacter"), CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = font_size , .textColor = TEXT_COLOR }));
     }
 
-    if (!mobileScreen) {
+    // if (!mobileScreen) {
         Clay_ScrollContainerData scrollData = Clay_GetScrollContainerData(Clay_GetElementId(CLAY_STRING("OuterScrollContainer")));
         Clay_Color scrollbarColor = (Clay_Color){0, 0, 0, 120};
         if (scrollbarData.mouseDown) {
@@ -325,10 +330,10 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
         float scrollHeight = scrollData.scrollContainerDimensions.height - 12;
         CLAY(CLAY_ID("ScrollBar"),
             CLAY_FLOATING({ .offset = { .x = -6, .y = -(scrollData.scrollPosition->y / scrollData.contentDimensions.height) * scrollHeight + 6}, .zIndex = 1, .parentId = Clay_GetElementId(CLAY_STRING("OuterScrollContainer")).id, .attachment = {.element = CLAY_ATTACH_POINT_RIGHT_TOP, .parent = CLAY_ATTACH_POINT_RIGHT_TOP }}),
-            CLAY_LAYOUT({ .sizing = {CLAY_SIZING_FIXED(10), CLAY_SIZING_FIXED((scrollHeight / scrollData.contentDimensions.height) * scrollHeight)} }),
+            CLAY_LAYOUT({ .sizing = {CLAY_SIZING_FIXED(mobileScreen ? 5 : 10), CLAY_SIZING_FIXED((scrollHeight / scrollData.contentDimensions.height) * scrollHeight)} }),
             CLAY_RECTANGLE({ .cornerRadius = CLAY_CORNER_RADIUS(5), .color = scrollbarColor })
         ) {}
-    }
+    // }
     return Clay_EndLayout();
 }
 bool isWindowMobileScreen = false;
