@@ -1,0 +1,60 @@
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "prod" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    environment:
+      name: ftp
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+            submodules: 'true'
+      
+      - name: Install clang
+        run: sudo apt install clang
+      
+      - name: Build site
+        run: ./build.sh
+          
+      - name: FTP Deployer
+      # You may pin to the exact commit or the version.
+      # uses: sand4rt/ftp-deployer@518beaad91d1b18fd55a69321de7ed89080d2ae3
+        uses: sand4rt/ftp-deployer@v1.8
+        with:
+        # SFTP on
+            #sftp: # optional
+        # FTP host URL like: ftp.host.com or sftp.host.com
+            host: ${{secrets.FTP_SERVER}}
+        # FTP port
+            #port: # optional, default is 21
+        # Ftp username
+            username: ${{secrets.FTP_USER}}
+        # Ftp password
+            password: ${{secrets.FTP_PASSWORD}}
+        # The remote folder location of your FTP server
+            remote_folder: "/public_html/"
+        # The local folder location
+            local_folder: "build"
+        # Remove existing files inside FTP remote folder
+            cleanup: true
+        # includes
+            # include: # optional
+        # exclude
+            # exclude: # optional
+        # passive
+           #  passive: # optional
+          
