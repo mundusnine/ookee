@@ -1,8 +1,8 @@
 name: Weekly python Script
 
 on:
-  # schedule:
-  #   - cron: '0 0 * * 0' # Runs every Sunday at 00:00 (midnight)
+  schedule:
+    - cron: '0 0 * * 0' # Runs every Sunday at 00:00 (midnight)
   workflow_dispatch:
 
 jobs:
