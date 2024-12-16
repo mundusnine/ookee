@@ -3,7 +3,6 @@ import os
 from instagrapi import Client
 from pathlib import Path
 
-#@TODO: Add username and password
 ACCOUNT_USERNAME = os.environ.get("IG_USERNAME")
 ACCOUNT_PASSWORD = os.environ.get("IG_PASSWORD")
 
@@ -19,20 +18,18 @@ def main(username: str, amount: int = 5) -> dict:
     medias = cl.user_medias(user_id)
     result = {}
     i = 0
-    folder_path = Path(username)
+    folder_path = Path("images/insta")
     folder_path.mkdir(exist_ok=True)
     c_content = "Clay_String image_names[] = {\n"
     arr_len = len(medias)
     for m in medias:
-        # Add next line in if for testing
-        # i >= amount or 
-        if m.code == "CLuxe4apA9a" or m.code == "CLuxXB7poUg" or m.code == "CLuxSDTpuIC" or m.media_type != 1:
+        if m.code == "CLuxe4apA9a" or m.code == "CLuxXB7poUg" or m.code == "CLuxSDTpuIC" or ( m.code !="C4GXuEnr5s0" and m.media_type != 1):
             continue
         if m.code == "CErOnLfJgDN":
             break
         info = cl.media_info(m.pk)
         paths = []
-        if m.media_type == 1:
+        if m.media_type == 1 or m.code == "C4GXuEnr5s0":
             image_url = m.thumbnail_url
             file_name = f"{m.code}"
             file_path = folder_path / file_name

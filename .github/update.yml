@@ -1,33 +1,31 @@
-name: Weekly Node.js Script
+name: Weekly python Script
 
 on:
   schedule:
     - cron: '0 0 * * 0' # Runs every Sunday at 00:00 (midnight)
+  workflow_dispatch:
 
 jobs:
   run-script:
+    environment:
+    name: ig
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
-        fetch-depth: 0 # Needed for git commit
-        
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-        
+        python-version: '3.12.3'
+        cache: 'pip'
+
     - name: Install dependencies
-      run: |
-        npm ci
+    - run: pip install -r requirements.txt
         
-    - name: Run Node.js script
-      run: |
-        node script.js
+    - name: Run script
       env:
-        # Any environment variables needed by your script
-        MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
+        IG_USERNAME: ${{ secrets.IG_USERNAME }}
+        IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+    - run: python instascrap.py
         
     - name: Commit changes
       run: |

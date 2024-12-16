@@ -6,6 +6,7 @@ Clay_String image_names[] = {
 	CLAY_STRING(IMG_PATH"C8fAAjbO5ip.jpg"),
 	CLAY_STRING(IMG_PATH"C8e_-yDOR68.jpg"),
 	CLAY_STRING(IMG_PATH"C4GX9eWOOya.jpg"),
+	CLAY_STRING(IMG_PATH"C4GXuEnr5s0.jpg"),
 	CLAY_STRING(IMG_PATH"C4GXqsjOkum.jpg"),
 	CLAY_STRING(IMG_PATH"C4GXnXvuafA.jpg"),
 	CLAY_STRING(IMG_PATH"C4GXbd_uHPl.jpg"),
@@ -89,4 +90,4 @@ Clay_String image_names[] = {
 	CLAY_STRING(IMG_PATH"CErPsu3Jwro.jpg"),
 	CLAY_STRING(IMG_PATH"CErPozBp2_Z.jpg"),
 };
-#define NUM_IMGS 89
+#define NUM_IMGS 90

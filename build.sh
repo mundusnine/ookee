@@ -34,6 +34,8 @@ main.c                                                                    \
 && cp -r fonts/ $build_dir/fonts                                          \
 && cp index.html build/index.html && cp -r images/ $build_dir/images      \
 
+./kraffiti from=favicon.png to=build/favicon.ico
+
 if $release_flag; then
     echo "Local dev mode activated."                                            
     cp server.py build/server.py

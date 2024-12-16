@@ -312,11 +312,14 @@ Clay_RenderCommandArray CreateLayout(bool mobileScreen, float lerpValue) {
         }
     }
     int font_size = mobileScreen ? 16 : 24;
+    Clay_String *text = &CLAY_STRING("Me contacter"); 
+    Clay_TextElementConfig *config = CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = font_size , .textColor = TEXT_COLOR });
+    Clay_Dimensions dims = Clay__MeasureText(text,config);
     CLAY(CLAY_ID("LinkContact"), 
-        CLAY_FLOATING({ .offset = { .x = mobileScreen ? -windowWidth * 0.07f : PAGE_PADDING * 0.25f - font_size, .y = 100}, .zIndex = 1, .parentId = Clay_GetElementId(CLAY_STRING("Header")).id, .attachment = {.element = CLAY_ATTACH_POINT_LEFT_BOTTOM, .parent = CLAY_ATTACH_POINT_LEFT_BOTTOM }}),
+        CLAY_FLOATING({ .offset = { .x = mobileScreen ? -windowWidth * 0.07f : PAGE_PADDING * 0.25f - font_size, .y = windowHeight * 0.5f - dims.width}, .zIndex = 1, .parentId = Clay_GetElementId(CLAY_STRING("Header")).id, .attachment = {.element = CLAY_ATTACH_POINT_LEFT_BOTTOM, .parent = CLAY_ATTACH_POINT_LEFT_BOTTOM }}),
         CLAY_LAYOUT({ .padding = {8} }), 
         CLAY_RECTANGLE({ .link = CLAY_STRING("mailto:christiane@ookee.ca"), .color = {0,0,0,0} })) {
-        CLAY_TEXT(CLAY_STRING("Me contacter"), CLAY_TEXT_CONFIG({ .disablePointerEvents = true, .fontId = FONT_ID_BODY_24, .fontSize = font_size , .textColor = TEXT_COLOR }));
+        CLAY_TEXT(*text, config);
     }
 
     // if (!mobileScreen) {
