@@ -8,7 +8,7 @@ on:
 jobs:
   run-script:
     environment:
-    name: ig
+      name: ig
     runs-on: ubuntu-latest
     
     steps:
