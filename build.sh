@@ -31,7 +31,7 @@ mkdir -p $build_dir                                                       \
 -Wl,--initial-memory=6553600                                              \
 -o $build_dir/index.wasm                                                  \
 main.c                                                                    \
-&& cp -r fonts/ $build_dir/fonts                                          \
+&& cp -r fonts/ $build_dir/fonts && cp .htaccess build/.htaccess          \
 && cp index.html build/index.html && cp -r images/ $build_dir/images      \
 
 ./kraffiti from=favicon.png to=build/favicon.ico
