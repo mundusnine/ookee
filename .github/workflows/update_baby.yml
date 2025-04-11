@@ -18,13 +18,14 @@ jobs:
       with:
         python-version: '3.12.3'
         cache: 'pip'
+
     - name: Update requirements
-    - run: pip install -r requirements.txt
+      run: pip install -r requirements.txt
     - name: Run script
       env:
         IG_USERNAME: ${{ secrets.IG_USERNAME }}
         IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
-    - run: python instascrap.py
+      run: python instascrap.py
         
     - name: Commit changes
       run: |
