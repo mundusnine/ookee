@@ -2,7 +2,7 @@ name: Weekly python Script
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday at 00:00 (midnight)
+    - cron: '0 * * * *' # Runs every Sunday at 00:00 (midnight)
   workflow_dispatch:
 
 jobs:
@@ -12,14 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - run: pip install -r requirements.txt
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
         python-version: '3.12.3'
         cache: 'pip'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
         
     - name: Run script
       env:
