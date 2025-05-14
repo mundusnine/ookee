@@ -6,7 +6,6 @@ Clay_String image_names[] = {
 	CLAY_STRING(IMG_PATH"037_MP2.jpg"),
 	CLAY_STRING(IMG_PATH"037_MP1.jpg"),
 	CLAY_STRING(IMG_PATH"036_CLF3.jpg"),
-	CLAY_STRING(IMG_PATH"036_CLF2_FB.jpg"),
 	CLAY_STRING(IMG_PATH"036_CLF2.jpg"),
 	CLAY_STRING(IMG_PATH"036_CLF1.jpg"),
 	CLAY_STRING(IMG_PATH"035_RadiologieLévis3.jpg"),
@@ -60,9 +59,6 @@ Clay_String image_names[] = {
 	CLAY_STRING(IMG_PATH"022_Nourcy3.jpg"),
 	CLAY_STRING(IMG_PATH"022_Nourcy2.jpg"),
 	CLAY_STRING(IMG_PATH"022_Nourcy1.jpg"),
-	CLAY_STRING(IMG_PATH"021_ÉmotionsFortes1_1080x1080.jpg"),
-	CLAY_STRING(IMG_PATH"021_Camping1_1080x1080.jpg"),
-	CLAY_STRING(IMG_PATH"021_Bureau1_1080x1080.jpg"),
 	CLAY_STRING(IMG_PATH"020_FuzzyBot3.jpg"),
 	CLAY_STRING(IMG_PATH"020_FuzzyBot2.jpg"),
 	CLAY_STRING(IMG_PATH"020_FuzzyBot1.jpg"),
@@ -108,4 +104,4 @@ Clay_String image_names[] = {
 	CLAY_STRING(IMG_PATH"003_OysterBaie11.jpg"),
 	CLAY_STRING(IMG_PATH"002_CarteNoel2018.jpg")
 };
-#define NUM_IMGS 108
+#define NUM_IMGS 104
