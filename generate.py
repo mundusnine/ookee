@@ -9,6 +9,7 @@ def main(directory: str) -> dict:
     Generate all medias to c
     """
     medias = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+    medias.reverse()
     result = {}
     i = 0
     folder_path = Path("images/insta")
